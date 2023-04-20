@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { prisma } from "@/server/db";
+import React from "react";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Home() {
+export default async function Home() {
   return <div></div>;
 }
