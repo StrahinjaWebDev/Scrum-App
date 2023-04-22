@@ -6,6 +6,9 @@ export async function GET(request: Request) {
     where: {
       name: "Marjan",
     },
+    select: {
+      name: true,
+    },
   });
 
   return NextResponse.json(board);
