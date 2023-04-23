@@ -5,11 +5,11 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  const user = await prisma?.user.findFirst({
-    where: {
-      id: session?.user.id,
-    },
-  });
+  // const user = await prisma?.user.findFirst({
+  //   where: {
+  //     id: session?.user.id,
+  //   },
+  // });
   return (
     <div>
       <h1>Homepage</h1>
