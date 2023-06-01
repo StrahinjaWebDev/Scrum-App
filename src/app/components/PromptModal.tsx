@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 interface Props {
-  message?: string;
-  onConfirm?: () => void;
   onCancel?: () => void;
-  confirmMessage?: string;
-  closeMessage?: string;
-  confirmed?: boolean;
 }
 
-const PromptModal = ({
-  message,
-  closeMessage,
-  onConfirm,
-  onCancel,
-  confirmMessage,
-}: Props) => {
+const PromptModal = ({ onCancel }: Props) => {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
