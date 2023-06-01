@@ -1,8 +1,18 @@
 "use client";
-import React from "react";
-import { signIn } from "next-auth/react";
+import React, { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Signin = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session !== null && status === "authenticated") {
+      router.push("http://localhost:3000");
+    }
+  }, [session, status, router]);
+
   return (
     <section className="bg-black opacity-80 h-[100vh] py-20 lg:py-[120px]">
       <div className="container mx-auto ">

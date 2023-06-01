@@ -1,5 +1,6 @@
 import React from "react";
-import "./globals.css";
+import "./globals.scss";
+import Providers from "@/components/Providers";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-black mx-auto bg-opacity-95`}>{children}</body>
+      <body className={`bg-black mx-auto bg-opacity-95`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

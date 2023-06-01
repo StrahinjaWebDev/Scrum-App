@@ -5,7 +5,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/server/db";
-//! ako ovde kaze new Prisma Client() ne pravi ga ovde, jer ga imas u db.ts
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
 
