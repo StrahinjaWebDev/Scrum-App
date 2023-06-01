@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 
 interface Props {
   onCancel?: () => void;
+  children: React.ReactNode;
 }
 
-const PromptModal = ({ onCancel }: Props) => {
+const PromptModal = ({ onCancel, children }: Props) => {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const PromptModal = ({ onCancel }: Props) => {
   return (
     <div className="fixed h-screen w-screen  left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
       <div
-        className={`absolute transform animation-forwards text-second bg-fourth min-h-[${height}] w-[${width}] flex flex-col rounded-2xl justify-center border-first border-2 items-center 
+        className={`absolute transform animation-forwards text-second bg-fourth min-h-[20em] w-[30em] flex flex-col rounded-2xl justify-center border-first border-2 items-center 
         ${
           !isClosing
             ? "animate-[appearScale_0.2s_ease]"
