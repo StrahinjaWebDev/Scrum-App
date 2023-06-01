@@ -10,11 +10,11 @@ export default async function Home() {
       name: session?.user.name,
     },
   });
-  console.log(user?.name);
   return (
-    <div>
-      <p>Hello: {user?.name}</p>
-      <h1>Homepage</h1>
+    <div className="w-[20em] h-[100vh] bg-black opacity-90 border-r-2 flex justify-center items-center">
+      <div className="flex items-start w-[90%] min-h-[96%]">
+        <button className="text-white text-sm">{user?.name}</button>
+      </div>
     </div>
   );
 }
