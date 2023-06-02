@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import UserInformation from "../ui/modal/mainPage/UserInformation";
+import Button from "../ui/Button";
+import UserOrganisationModal from "../ui/modal/mainPage/UserOrganisationModal";
 
 interface Props {
   user: User | null;
@@ -12,26 +14,38 @@ interface Props {
 
 const Sidebar = ({ user }: Props) => {
   const [userInformationsModal, setUserInformationsModal] = useState(false);
+  const [userOrganisationModal, setUserOrganisationModal] = useState(false);
 
   const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (session === null && status === "unauthenticated") {
-      router.push("http://localhost:3000/sign-in");
+      router.push("/sign-in");
     }
   }, [session, status, router]);
 
   return (
-    <div className="w-[13.5em] h-[100vh] bg-slate-400 bg-opacity-5 border-r flex border-gray-500 border-opacity-20 justify-center items-center">
-      <div className="flex items-start w-full min-h-[96%] justify-around ">
-        <button className="text-white text-sm">{user?.name}</button>
+    <div className="w-[13.5em] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex border-gray-500 border-opacity-20 justify-center items-center">
+      <div className="flex items-start w-full min-h-[98%] justify-around ">
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={() => setUserOrganisationModal(true)}
+        >
+          {user?.name}
+        </Button>
+        {userOrganisationModal && (
+          <UserOrganisationModal
+            setUserOrganisationModal={setUserOrganisationModal}
+          />
+        )}
         <Image
           src={user?.image || ""}
           width={20}
           height={20}
-          className="rounded-full"
-          alt=""
+          className="rounded-full mt-[0.4em]"
+          alt="userImg"
           onClick={() => setUserInformationsModal(true)}
         />
         {userInformationsModal && (
