@@ -4,12 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
 import useDetectClickOutside from "@/hooks/useDetectClickOutside ";
-import Title from "./Title";
+import Title from "../Title";
 import { createPortal } from "react-dom";
-import Overlay from "./Overlay";
-import Header from "./Header";
-import Content from "./Content";
-import Footer from "./Footer";
+import Overlay from "../Overlay";
+import Header from "../Header";
+import Content from "../Content";
+import Footer from "../Footer";
 
 interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;

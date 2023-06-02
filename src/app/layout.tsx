@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-black mx-auto bg-opacity-95`}>
+      <body className={`bg-primary mx-auto`}>
         <Providers>{children}</Providers>
       </body>
     </html>

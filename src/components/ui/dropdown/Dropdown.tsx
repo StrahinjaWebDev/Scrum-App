@@ -40,7 +40,7 @@ const Dropdown = ({
       ref={dropdownRef}
       {...props}
       className={classNames(
-        "absolute z-20 flex flex-col rounded-lg border border-dark-4 bg-dark-3 text-base shadow-lg animation-forwards",
+        "absolute z-20 flex flex-col rounded-lg border border-secondary opacity-100 bg-dark-3 text-base shadow-lg animation-forwards",
         className,
         {
           "animate-[appearScale_0.3s_cubic-bezier(0.19,1,0.22,1)]":

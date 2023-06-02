@@ -22,7 +22,7 @@ const Button = ({
     <button
       {...props}
       className={classNames(
-        "relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded transition-all duration-75",
+        "relative inline-flex items-center gap-2 whitespace-nowrap rounded transition-all duration-75",
         className,
         {
           "border border-[#151516] bg-[#151516] text-[#EEEFF1]  hover:bg-opacity-80":
@@ -33,10 +33,10 @@ const Button = ({
             variant === "danger",
           "hover:bg-opacity hover:border-spacing-100 border border-[rgb(49,50,72)]  border-opacity-75 bg-opacity-0 text-[rgb(210,211,224)] ":
             variant === "ghost",
-          "h-9 min-w-[36px] py-0 px-[14px] text-[0.8125rem] font-medium hover:bg-opacity-90":
+          "h-9 min-w-[36px] py-0 px-[14px] text-[0.8125rem]hover:bg-opacity-90 ":
             size === "default",
-          "h-8 px-3 ": size === "sm",
-          "h-10 px-4": size == "lg",
+          "h-8 px-3 text-sm font-medium border-none": size === "sm",
+          "h-10 px-4 text-lg": size == "lg",
         }
       )}
     >
