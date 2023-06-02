@@ -20,7 +20,7 @@ const Loader = ({
         "inline-block rounded-[50%] border-b-transparent",
         className,
         {
-          "border-[rgb(87,91,199)]": variant === "primary",
+          "border-rgb(6,6,7)": variant === "primary",
           "border-white": variant === "secondary",
           "h-[48px] w-[48px] border-[5px]": size === "default",
           "h-[20px] w-[20px] border": size === "sm",

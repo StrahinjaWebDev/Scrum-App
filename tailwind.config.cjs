@@ -11,11 +11,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "rgb(87,91,199)",
-        first: "#222831",
-        second: "#393E46",
-        third: "#787A91",
-        fourth: "#EEEEEE",
+        primary: "rgb(6,6,7)",
+        secondary: "##6b6f76",
+        third: "rgb(84,38,40)",
+        fourth: "#191a23",
+        fifth: "#EEEEEE",
+        sixth: "rgb(18,18,19)",
       },
       keyframes: {
         appearFromTop: {
@@ -29,7 +30,7 @@ module.exports = {
         appearScale: {
           "0%": {
             opacity: "0",
-            scale: "0.8",
+            scale: "0.9",
           },
           "100%": {
             opacity: "1",
@@ -43,7 +44,7 @@ module.exports = {
           },
           "100%": {
             opacity: "0",
-            scale: "0.8",
+            scale: "0.9",
           },
         },
         dissapearToTop: {

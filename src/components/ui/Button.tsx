@@ -25,11 +25,11 @@ const Button = ({
         "relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded transition-all duration-75",
         className,
         {
-          "border border-[rgb(87,91,199)] bg-[rgb(87,91,199)] text-[rgb(210,211,224)]  hover:bg-opacity-90":
+          "border border-[#151516] bg-[#151516] text-[#EEEFF1]  hover:bg-opacity-80":
             variant === "primary",
-          "border-[rgb(49,50,72)] bg-[rgb(39,41,57)] text-[rgb(210,211,224)] hover:bg-opacity-90":
+          "border-[rgb(49,50,72)] bg-[rgb(39,41,57)] text-[#EEEFF1] hover:bg-opacity-90":
             variant === "secondary",
-          "border-[rgb(235,87,87)] bg-[rgb(235,87,87)] shadow-md shadow-[rgb(0,0,0)] hover:bg-opacity-90 ":
+          "border-[#D25E65] bg-[#D25E65] shadow-md shadow-[rgb(0,0,0)] hover:bg-opacity-90 ":
             variant === "danger",
           "hover:bg-opacity hover:border-spacing-100 border border-[rgb(49,50,72)]  border-opacity-75 bg-opacity-0 text-[rgb(210,211,224)] ":
             variant === "ghost",
