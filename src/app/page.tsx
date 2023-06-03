@@ -1,4 +1,3 @@
-import { prisma } from "@/server/db";
 import React from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
@@ -6,18 +5,16 @@ import Sidebar from "@/components/sidebar";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Loader from "@/components/ui/Loader";
+import { getUser } from "@/getUser";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  const user = await prisma?.user.findFirst({
-    where: {
-      name: session?.user.name,
-    },
-  });
+
+  const data = await getUser(session?.user.id);
 
   return (
     <div className="flex w-full h-full">
-      <Sidebar user={user} />
+      <Sidebar user={data} />
       <div
         className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 h-[22em] justify-center w-1/3 border border-gray-600 rounded-md flex items-center flex-col"
         id="test-div"
