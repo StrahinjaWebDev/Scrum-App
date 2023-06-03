@@ -4,21 +4,15 @@ import { NextResponse } from "next/server";
 export async function PUT(request: Request) {
   const res = await request.json();
   const userId = res.userId;
-  const name = res.name;
+  const workspaceId = res.workspaceId;
   try {
-    const workspace = await prisma.workspace.create({
-      data: {
-        name: name,
-      },
-    });
-
-    if (workspace.id) {
+    {
       const user = await prisma.user.update({
         where: {
           id: userId,
         },
         data: {
-          workspaceId: workspace.id,
+          workspaceId: workspaceId,
         },
       });
       return NextResponse.json(user);

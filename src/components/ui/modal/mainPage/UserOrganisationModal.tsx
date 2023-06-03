@@ -1,8 +1,7 @@
 import React from "react";
 import Button from "../../Button";
 import Dropdown from "../../dropdown/Dropdown";
-import { redirect, useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface Props {
   setUserOrganisationModal: (isOpen: boolean) => void;
@@ -12,7 +11,7 @@ const UserOrganisationModal = ({ setUserOrganisationModal }: Props) => {
   const router = useRouter();
   return (
     <Dropdown
-      className="mt-9 bg-secondary bg-opacity-25 ml-[3.7em] w-[15.5em] "
+      className="mt-9 bg-secondary bg-opacity-25 left-0 top-full origin-top-left w-[15.5em] "
       onClose={() => setUserOrganisationModal(false)}
     >
       <Button variant="ghost" size="sm" onClick={() => router.push("/join")}>
