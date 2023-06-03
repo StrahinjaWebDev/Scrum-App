@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import Button from "../Button";
+import Button from "./Button";
 
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
