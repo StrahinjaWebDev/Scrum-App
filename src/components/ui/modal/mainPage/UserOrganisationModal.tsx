@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../Button";
 import Dropdown from "../../dropdown/Dropdown";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 interface Props {
   setUserOrganisationModal: (isOpen: boolean) => void;

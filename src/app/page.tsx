@@ -10,7 +10,7 @@ import { getUser } from "@/getUser";
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  const data = await getUser(session?.user.id);
+  const data = await getUser(session?.user.id ?? "");
 
   return (
     <div className="flex w-full h-full">

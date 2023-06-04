@@ -7,7 +7,7 @@ export async function PUT(request: Request) {
   const workspaceId = res.workspaceId;
   try {
     {
-      const user = await prisma.user.update({
+      const updatedUser = await prisma.user.update({
         where: {
           id: userId,
         },
@@ -15,9 +15,10 @@ export async function PUT(request: Request) {
           workspaceId: workspaceId,
         },
       });
-      return NextResponse.json(user);
+      return NextResponse.json(updatedUser, { status: 200 });
     }
   } catch (error) {
-    return new Response(error);
+    const errorMessage = (error as Error).toString();
+    return new Response(errorMessage, { status: 500 });
   }
 }

@@ -1,15 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import type { User } from "@prisma/client";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "../ui/Button";
 import axios from "axios";
-import Dropdown from "../ui/dropdown/Dropdown";
-import UserOrganisationModal from "../ui/modal/mainPage/UserOrganisationModal";
 import UserDropdown from "../dropdowns/UserDropdown";
+import type { User } from "@/types/User";
 
 interface Props {
   user: User | null;
@@ -17,7 +15,7 @@ interface Props {
 
 const Sidebar = ({ user }: Props) => {
   const [dropdown, setDropdown] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState<User | null>(null);
   const { data: session, status } = useSession();
   const router = useRouter();
 

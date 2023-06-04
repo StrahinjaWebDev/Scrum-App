@@ -2,7 +2,7 @@ import { prisma } from "@/server/db";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const id = request.body?.id;
+  const id = (request.body as { id?: string })?.id;
   const user = await prisma?.user.findFirst({
     where: {
       id: id,
