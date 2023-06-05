@@ -1,6 +1,6 @@
 import React from "react";
 import "./globals.scss";
-import Providers from "@/components/Providers";
+import Providers from "@/provider/Providers";
 
 export const metadata = {
   title: "Create Next App",

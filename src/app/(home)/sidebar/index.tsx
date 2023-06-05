@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Button from "../ui/Button";
+import Button from "../../../components/ui/Button";
 import axios from "axios";
 import UserDropdown from "../dropdowns/UserDropdown";
-import type { User } from "@/types/User";
+import type { User } from "@/types";
 
 interface Props {
   user: User | null;
