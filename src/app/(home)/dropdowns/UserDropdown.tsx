@@ -31,7 +31,14 @@ const UserDropdown = ({ onClose, userId }: Props) => {
         Settings
       </Button>
       <Button variant="ghost" size="sm" onClick={leaveWorkspace}>
-        Leave Workspace
+        Join workspace
+      </Button>
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => push("/createWorkspace")}
+      >
+        Create new workspace
       </Button>
       <Button variant="ghost" size="sm" onClick={() => signOut()}>
         Logout

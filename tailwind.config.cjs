@@ -10,6 +10,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      scrollbar: ["rounded"],
       colors: {
         primary: "rgb(8,8,10)",
         secondary: "#6b6f76",
@@ -75,6 +76,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("tailwind-scrollbar"),
     // eslint-disable-next-line no-undef
     function ({ addUtilities }) {
       addUtilities({

@@ -29,7 +29,7 @@ const Workspace = ({ id, name }: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-4 w-full px-6 justify-between pt-5">
+    <div className="flex items-center gap-4 w-full px-6 justify-between pt-5 bg-secondary bg-opacity-20">
       <p className="text-white">{name}</p>
       <Button
         onClick={() => {
@@ -37,7 +37,7 @@ const Workspace = ({ id, name }: Props) => {
         }}
         variant="primary"
       >
-        Joint
+        Join
       </Button>
     </div>
   );
