@@ -29,13 +29,14 @@ const Workspace = ({ id, name }: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-4 w-full px-6 justify-between pt-5 bg-secondary bg-opacity-20">
+    <div className="flex items-center gap-4 w-full px-12 justify-between border-t-[1px] h-[5em] border-secondary border-opacity-10">
       <p className="text-white">{name}</p>
       <Button
         onClick={() => {
           body.userId && body.userId && joinUserToWorkspace();
         }}
-        variant="primary"
+        variant="secondary"
+        className="w-[6em] border-[1px]  border-secondary bg-opacity-70 h-[2.5]"
       >
         Join
       </Button>

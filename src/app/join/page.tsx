@@ -31,7 +31,10 @@ const Organisation = () => {
           Teams are group of people who reguraly work toghter on tasks and
           projects
         </span>
-        <div className="border max-h-[50vh] w-full overflow-y-auto scrollbar-primary rounded-md">
+        <div className="max-h-[30em] w-full overflow-y-auto scrollbar-primary rounded-md bg-secondary bg-opacity-20 shadow-black shadow-lg">
+          <p className="text-white flex justify-center items-center my-5 mx-11 bg-slate-300 bg-opacity-5 w-[15em] h-10 rounded-2xl border-secondary border-2 font-medium text-opacity-80 border-opacity-30">
+            Join existing teams
+          </p>
           {data?.map((workspace: WorkspaceType) => {
             return (
               <Workspace

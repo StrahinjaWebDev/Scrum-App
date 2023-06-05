@@ -41,11 +41,17 @@ const Sidebar = ({ user }: Props) => {
     <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center">
       <div className="h-20 w-full">
         <div className="flex items-center py-4 w-full justify-around">
-          <p className="text-stone-300">{userData?.Workspace?.name}</p>
+          <p
+            className="text-stone-300 w-[150px] text-sm flex whitespace-nowrap overflow-hidden text-ellipsis font-bold"
+            title={userData?.Workspace?.name}
+          >
+            {userData?.Workspace?.name}
+          </p>
           <div className="relative">
             <Button size="sm" variant="ghost">
               <Image
                 src={user?.image || ""}
+                title={user?.name || ""}
                 width={20}
                 height={20}
                 className="rounded-full"
