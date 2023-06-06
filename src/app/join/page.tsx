@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import type { Workspace as WorkspaceType } from "@prisma/client";
 import Workspace from "@/app/join/(components)/Workspace";
-import Button from "@/components/ui/Button";
 import { LinearIcon } from "../../../public/svgs/LinearIcon";
 
 const Organisation = () => {

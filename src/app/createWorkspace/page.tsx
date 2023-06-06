@@ -7,6 +7,10 @@ import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import type { ApiCreateNewWorkspaceRequest } from "../api/(workspace)/createWorkspace/api-request";
+import { apiCreateWorkspaceValidator } from "../api/(workspace)/createWorkspace/api-request";
+import { Toaster } from "react-hot-toast";
+import { toastSuccess, toastWarning } from "@/components/ui/Toasters";
+import { z } from "zod";
 
 const CreateNewWorkspace = () => {
   const [name, setName] = useState("");
@@ -16,14 +20,24 @@ const CreateNewWorkspace = () => {
   const { data: session } = useSession();
 
   const createWorkspace = async () => {
-    const newWorkspace: ApiCreateNewWorkspaceRequest = {
-      userId: session?.user.id || "",
-      name: name,
-    };
-    await axios.post("http://localhost:3000/api/createWorkspace", newWorkspace);
-    router.push("/");
+    try {
+      const newWorkspace: ApiCreateNewWorkspaceRequest = {
+        userId: session?.user.id || "",
+        name: name,
+      };
+      await apiCreateWorkspaceValidator.parseAsync(newWorkspace);
+      await axios.post(
+        "http://localhost:3000/api/createWorkspace",
+        newWorkspace
+      );
+      router.push("/");
+      toastSuccess("Success", "Workspace created successfully");
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        toastWarning("Failed", err.issues[0].message);
+      }
+    }
   };
-
   return (
     <div className="flex flex-col justify-center items-center bg-slate-300 bg-opacity-5 h-[100vh] gap-6">
       <span className="text-fifth text-2xl font-medium">
@@ -59,6 +73,7 @@ const CreateNewWorkspace = () => {
       >
         Create Workspace
       </Button>
+      <Toaster />
     </div>
   );
 };
