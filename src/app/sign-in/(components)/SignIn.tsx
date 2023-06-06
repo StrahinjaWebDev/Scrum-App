@@ -2,11 +2,9 @@
 
 import React from "react";
 import { signIn } from "next-auth/react";
-import {
-  DiscordIcon,
-  GithubIcon,
-  GoogleIcon,
-} from "../../../../public/svgs/Svgs";
+import { GithubIcon } from "../../../../public/svgs/Githubicon";
+import { DiscordIcon } from "../../../../public/svgs/DiscordIcon";
+import { GoogleIcon } from "../../../../public/svgs/GoogleIcon";
 
 const SignIn = () => {
   return (

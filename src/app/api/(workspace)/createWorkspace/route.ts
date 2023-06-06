@@ -1,10 +1,14 @@
 import { prisma } from "@/server/db";
 import { NextResponse } from "next/server";
+import type { ApiCreateNewWorkspaceRequest } from "./api-request";
+import { apiCreateWorkspaceValidator } from "./api-request";
 
 export async function POST(request: Request) {
   const res = await request.json();
-  const userId = res.userId;
-  const name = res.name;
+  const validatePayload: ApiCreateNewWorkspaceRequest =
+    apiCreateWorkspaceValidator.parse(res);
+  const { name, userId } = validatePayload;
+
   try {
     const workspace = await prisma.workspace.create({
       data: {

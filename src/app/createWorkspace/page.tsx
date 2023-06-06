@@ -6,6 +6,7 @@ import Input from "@/components/ui/Input";
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import type { ApiCreateNewWorkspaceRequest } from "../api/(workspace)/createWorkspace/api-request";
 
 const CreateNewWorkspace = () => {
   const [name, setName] = useState("");
@@ -15,14 +16,11 @@ const CreateNewWorkspace = () => {
   const { data: session } = useSession();
 
   const createWorkspace = async () => {
-    const newWorkspace = {
-      userId: session?.user.id,
+    const newWorkspace: ApiCreateNewWorkspaceRequest = {
+      userId: session?.user.id || "",
       name: name,
     };
-    const request = await axios.post(
-      "http://localhost:3000/api/createWorkspace",
-      newWorkspace
-    );
+    await axios.post("http://localhost:3000/api/createWorkspace", newWorkspace);
     router.push("/");
   };
 
@@ -35,7 +33,7 @@ const CreateNewWorkspace = () => {
         Workspaces are shared environments where teams can work on projects,
         cycles, and tasks.
       </p>
-      <div className="flex flex-col items-center justify-center gap-12 bg-slate-400 bg-opacity-5  w-[29em] h-[17em] rounded-xl">
+      <div className="flex flex-col items-center justify-center gap-8 bg-slate-400 bg-opacity-5  w-[29em] h-[17em] rounded-xl">
         <div className="flex flex-col gap-2">
           <p className="text-fifth text-sm">Workspace Name</p>
           <Input
