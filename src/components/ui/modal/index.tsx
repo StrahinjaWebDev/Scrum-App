@@ -7,7 +7,7 @@ import useDetectClickOutside from "@/hooks/useDetectClickOutside ";
 import Title from "../Title";
 import { createPortal } from "react-dom";
 import Overlay from "../Overlay";
-import Header from "../Header";
+import Header from "../Headers";
 import Content from "../Content";
 import Footer from "../Footer";
 
