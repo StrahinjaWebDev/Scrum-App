@@ -11,6 +11,7 @@ import { apiCreateWorkspaceValidator } from "../api/(workspace)/createWorkspace/
 import { Toaster } from "react-hot-toast";
 import { toastSuccess, toastWarning } from "@/components/ui/Toasters";
 import { z } from "zod";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 const CreateNewWorkspace = () => {
   const [name, setName] = useState("");
@@ -19,6 +20,8 @@ const CreateNewWorkspace = () => {
 
   const { data: session } = useSession();
 
+  const baseUrl = getBaseUrl();
+
   const createWorkspace = async () => {
     try {
       const newWorkspace: ApiCreateNewWorkspaceRequest = {
@@ -26,10 +29,7 @@ const CreateNewWorkspace = () => {
         name: name,
       };
       await apiCreateWorkspaceValidator.parseAsync(newWorkspace);
-      await axios.post(
-        "http://localhost:3000/api/createWorkspace",
-        newWorkspace
-      );
+      await axios.post(`${baseUrl}/api/createWorkspace`, newWorkspace);
       router.push("/");
       toastSuccess("Success", "Workspace created successfully");
     } catch (err) {

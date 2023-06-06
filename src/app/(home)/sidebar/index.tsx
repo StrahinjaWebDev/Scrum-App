@@ -9,6 +9,7 @@ import axios from "axios";
 import UserDropdown from "../dropdowns/UserDropdown";
 import type { User } from "@/types";
 import Tooltip from "@/components/ui/Tooltip";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 interface Props {
   user: User | null;
@@ -20,11 +21,11 @@ const Sidebar = ({ user }: Props) => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  const baseUrl = getBaseUrl();
+
   useEffect(() => {
     const getUser = async () => {
-      const { data: user } = await axios.get(
-        "http://localhost:3000/api/getUser"
-      );
+      const { data: user } = await axios.get(`${baseUrl}/api/getUser`);
 
       setUserData(user);
     };

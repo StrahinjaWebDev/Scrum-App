@@ -1,7 +1,9 @@
 import axios from "axios";
+import { getBaseUrl } from "./lib/getBaseUrl";
 
 export const getUser = async (userId: string) => {
-  const user = await axios.get("http://localhost:3000/api/getUser", {
+  const baseUrl = getBaseUrl();
+  const user = await axios.get(`${baseUrl}/api/getUser`, {
     params: {
       id: userId,
     },

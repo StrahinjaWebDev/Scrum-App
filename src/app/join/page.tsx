@@ -5,14 +5,17 @@ import axios from "axios";
 import type { Workspace as WorkspaceType } from "@prisma/client";
 import Workspace from "@/app/join/(components)/Workspace";
 import { LinearIcon } from "../../../public/svgs/LinearIcon";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 const Organisation = () => {
   const [data, setData] = useState([]);
 
+  const baseUrl = getBaseUrl();
+
   useEffect(() => {
     const getData = async () => {
       const { data: workspaces } = await axios.get(
-        "http://localhost:3000/api/getWorkspace"
+        `${baseUrl}/api/getWorkspace`
       );
       setData(workspaces);
     };

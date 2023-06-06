@@ -4,6 +4,7 @@ import Button from "../../../components/ui/Button";
 import { signOut } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { getBaseUrl } from "@/lib/getBaseUrl";
 
 interface Props {
   userId: string;
@@ -12,10 +13,11 @@ interface Props {
 
 const UserDropdown = ({ onClose, userId }: Props) => {
   const { push } = useRouter();
+  const baseUrl = getBaseUrl();
 
   const leaveWorkspace = async () => {
     try {
-      await axios.put("http://localhost:3000/api/leaveWorkspace", {
+      await axios.put(`${baseUrl}/api/leaveWorkspace`, {
         userId: userId,
       });
       push("/join");
