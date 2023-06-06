@@ -1,2 +1,7 @@
 tailwind.config.cjs
 postcss.config.cjs
+next.config.mjs
+client.mjs
+server.mjs
+schema.mjs
+```
