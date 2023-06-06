@@ -18,44 +18,13 @@ module.exports = {
         fourth: "#191a23",
         fifth: "#EEEEEE",
         sixth: "rgb(18,18,19)",
+        "dark-1": "#121212",
+        "dark-2": "#212121",
+        "dark-3": "#303030",
+        "dark-4": "#424242",
       },
+
       keyframes: {
-        appearFromTop: {
-          "0%": {
-            transform: "translateY(-50px)",
-          },
-          "100%": {
-            transform: "translateY(0)",
-          },
-        },
-        appearScale: {
-          "0%": {
-            opacity: "0",
-            scale: "0.9",
-          },
-          "100%": {
-            opacity: "1",
-            scale: "1",
-          },
-        },
-        dissAppearScale: {
-          "0%": {
-            opacity: "1",
-            scale: "1",
-          },
-          "100%": {
-            opacity: "0",
-            scale: "0.9",
-          },
-        },
-        dissapearToTop: {
-          "0%": {
-            transform: "translateY(0)",
-          },
-          "100%": {
-            transform: "translateY(-50px)",
-          },
-        },
         appear: {
           "0%": {
             opacity: "0",
@@ -64,11 +33,135 @@ module.exports = {
             opacity: "1",
           },
         },
-        dissAppear: {
+        disappear: {
           "0%": {
             opacity: "1",
           },
           "100%": {
+            opacity: "0",
+          },
+        },
+        appearFromTop: {
+          "0%": {
+            tranform: "translateY(-100px)",
+            opacity: "0",
+          },
+          "10%": {
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
+        appearFromBottom: {
+          "0%": {
+            tranform: "translateY(100px)",
+
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
+        appearScale: {
+          "0%": {
+            scale: "0.9",
+            opacity: "0",
+          },
+          "100%": {
+            scale: 1,
+            opacity: "1",
+          },
+        },
+        dissapearScale: {
+          "0%": {
+            scale: 1,
+            opacity: "1",
+          },
+          "100%": {
+            scale: "0.9",
+            opacity: "0",
+          },
+        },
+        slideTop: {
+          "0%": {},
+          "100%": {
+            transform: "translateY(-100%)",
+          },
+        },
+        slideBottom: {
+          "0%": {
+            transform: "translateY(-100%)",
+          },
+          "100%": {
+            transform: "translateY(100%)",
+          },
+        },
+        slideBottomHalf: {
+          "0%": {
+            transform: "translateY(-100%)",
+          },
+          "100%": {
+            transform: "translateY(0)",
+          },
+        },
+        increaseRadius: {
+          "0%": {
+            borderRadius: "5px",
+          },
+          "100%": {
+            borderRadius: "50%",
+          },
+        },
+        decreaseRadius: {
+          "0%": {
+            borderRadius: "50%",
+          },
+          "100%": {
+            borderRadius: "5px",
+          },
+        },
+        toggleRight: {
+          "0%": {
+            left: "0",
+          },
+          "100%": {
+            left: "50%",
+          },
+        },
+        toggleLeft: {
+          "0%": {
+            left: "50%",
+          },
+          "100%": {
+            left: "0",
+          },
+        },
+        closeHeight: {
+          "0%": {
+            height: "13em",
+          },
+          "100%": {
+            height: "9em",
+          },
+        },
+        expandHeight: {
+          "0%": {
+            height: "9em",
+          },
+          "100%": {
+            height: "13em",
+          },
+        },
+        slideRight: {
+          "0%": {
+            transform: "translateX(-50%)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateX(-40%)",
             opacity: "0",
           },
         },

@@ -2,11 +2,9 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import Sidebar from "@/app/(home)/sidebar";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
-import Loader from "@/components/ui/Loader";
 import { getUser } from "@/getUser";
 import Header from "./(home)/Header/Header";
+import Team from "./(home)/team/Team";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -16,7 +14,10 @@ export default async function Home() {
   return (
     <div className="flex w-full h-full">
       <Sidebar user={data} />
-      <Header />
+      <div className="flex flex-col grow">
+        <Header />
+        <Team />
+      </div>
     </div>
   );
 }

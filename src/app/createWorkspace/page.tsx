@@ -73,7 +73,6 @@ const CreateNewWorkspace = () => {
       >
         Create Workspace
       </Button>
-      <Toaster />
     </div>
   );
 };

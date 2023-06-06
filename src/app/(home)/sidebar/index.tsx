@@ -8,6 +8,7 @@ import Button from "../../../components/ui/Button";
 import axios from "axios";
 import UserDropdown from "../dropdowns/UserDropdown";
 import type { User } from "@/types";
+import Tooltip from "@/components/ui/Tooltip";
 
 interface Props {
   user: User | null;
@@ -38,15 +39,16 @@ const Sidebar = ({ user }: Props) => {
   }, [session, status, router]);
 
   return (
-    <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center">
+    <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center shrink-0">
       <div className="h-20 w-full">
         <div className="flex items-center py-4 w-full justify-around">
-          <p
-            className="text-stone-300 w-[150px] text-sm flex whitespace-nowrap overflow-hidden text-ellipsis font-bold"
-            title={userData?.Workspace?.name}
-          >
-            {userData?.Workspace?.name}
-          </p>
+          <div>
+            <Tooltip text={userData?.Workspace?.name ?? ""}>
+              <p className="text-stone-300 text-sm whitespace-nowrap overflow-hidden text-ellipsis font-bold">
+                {userData?.Workspace?.name}
+              </p>
+            </Tooltip>
+          </div>
           <div className="relative">
             <Button size="sm" variant="ghost">
               <Image
