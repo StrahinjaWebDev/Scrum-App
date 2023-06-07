@@ -5,7 +5,6 @@ import Sidebar from "@/app/(home)/sidebar";
 import { getUser } from "@/getUser";
 import Header from "./(home)/Header/Header";
 import Team from "./(home)/team/Team";
-import { getBaseUrl } from "@/lib/getBaseUrl";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);

@@ -6,10 +6,14 @@ import type { Workspace as WorkspaceType } from "@prisma/client";
 import Workspace from "@/app/join/(components)/Workspace";
 import { LinearIcon } from "../../../public/svgs/LinearIcon";
 import { getBaseUrl } from "@/lib/getBaseUrl";
+import { useRouter } from "next/navigation";
+import type { User } from "@/types";
 
 const Organisation = () => {
   const [data, setData] = useState([]);
+  const [userData, setUserData] = useState<User | null>(null);
 
+  const router = useRouter();
   const baseUrl = getBaseUrl();
 
   useEffect(() => {
@@ -20,7 +24,24 @@ const Organisation = () => {
       setData(workspaces);
     };
     getData();
+  }, [baseUrl]);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: user } = await axios.get(`${baseUrl}/api/getUser`);
+
+      setUserData(user);
+    };
+    getUser();
   }, []);
+
+  useEffect(() => {
+    if (userData?.Workspace === undefined || userData?.Workspace === null) {
+      router.push("/join");
+    } else {
+      router.push("/");
+    }
+  }, [router, userData]);
 
   return (
     <div className="flex flex-col justify-center items-center bg-slate-300 bg-opacity-5 h-[100vh] gap-6 ">

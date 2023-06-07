@@ -39,13 +39,19 @@ const Sidebar = ({ user }: Props) => {
     }
   }, [session, status, router]);
 
+  useEffect(() => {
+    if (userData?.Workspace === null) {
+      router.push("/join");
+    }
+  }, [userData, router]);
+
   return (
     <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center shrink-0">
       <div className="h-20 w-full">
         <div className="flex items-center py-4 w-full justify-around">
           <div>
             <Tooltip text={userData?.Workspace?.name ?? ""}>
-              <p className="text-stone-300 text-sm whitespace-nowrap overflow-hidden text-ellipsis font-bold">
+              <p className="text-stone-300 text-sm whitespace-nowrap overflow-hidden text-ellipsis font-bold w-[140px]">
                 {userData?.Workspace?.name}
               </p>
             </Tooltip>
