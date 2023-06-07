@@ -8,6 +8,7 @@ import { LinearIcon } from "../../../public/svgs/LinearIcon";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 import { useRouter } from "next/navigation";
 import type { User } from "@/types";
+import Button from "@/components/ui/Button";
 
 const Organisation = () => {
   const [data, setData] = useState([]);
@@ -45,6 +46,21 @@ const Organisation = () => {
 
   return (
     <div className="flex flex-col justify-center items-center bg-slate-300 bg-opacity-5 h-[100vh] gap-6 ">
+      <div className="absolute left-8 top-6 flex flex-col text-[13px] gap-1">
+        <p className="text-white text-opacity-70">Logged in as:</p>
+        <span className="text-white text-opacity-90 font-medium">
+          {userData?.name}
+        </span>
+      </div>
+      <div className="absolute right-8 top-6">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => router.push("/createWorkspace")}
+        >
+          Create new workspace
+        </Button>
+      </div>
       <div className="h-screen flex items-center justify-center flex-col gap-5 w-[35%]">
         <LinearIcon />
         <p className="text-3xl text-fifth font-semibold">
