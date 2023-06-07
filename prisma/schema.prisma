@@ -64,19 +64,43 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Board {
-  id          String     @id @default(cuid())
-  name        String
-  Workspace   Workspace? @relation(fields: [workspaceId], references: [id])
-  workspaceId String?
-
-  @@unique([id])
-  @@unique([workspaceId])
-}
-
 model Workspace {
   id     String  @id @default(cuid())
   boards Board[]
   users  User[]
   name   String
+}
+
+model Board {
+  id          String     @id @default(cuid())
+  name        String
+  Workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  workspaceId String?
+  Column      Column[]
+
+  @@unique([id])
+  @@unique([workspaceId])
+}
+
+model Column {
+  id      String @id @default(cuid())
+  name    String
+  board   Board  @relation(fields: [boardId], references: [id])
+  boardId String
+  Task    Task?
+
+  @@unique([id])
+  @@unique([boardId])
+}
+
+model Task {
+  id        String   @id @default(cuid())
+  name      String
+  column    Column   @relation(fields: [columnId], references: [id])
+  columnId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([id])
+  @@unique([columnId])
 }

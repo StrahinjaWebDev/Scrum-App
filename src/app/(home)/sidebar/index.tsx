@@ -10,6 +10,7 @@ import UserDropdown from "../dropdowns/UserDropdown";
 import type { User } from "@/types";
 import Tooltip from "@/components/ui/Tooltip";
 import { getBaseUrl } from "@/lib/getBaseUrl";
+import { getBoards } from "@/getBoards";
 
 interface Props {
   user: User | null;
@@ -18,10 +19,23 @@ interface Props {
 const Sidebar = ({ user }: Props) => {
   const [dropdown, setDropdown] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const [boards, setBoards] = useState([]);
 
+  const { data: session, status } = useSession();
+
+  const router = useRouter();
   const baseUrl = getBaseUrl();
+
+  useEffect(() => {
+    console.log("TEST");
+    const fetchBoards = async () => {
+      if (userData?.Workspace.id) {
+        const boards = await getBoards(userData?.Workspace.id);
+        setBoards(boards);
+      }
+    };
+    fetchBoards();
+  }, [userData?.Workspace.id]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -44,6 +58,8 @@ const Sidebar = ({ user }: Props) => {
       router.push("/join");
     }
   }, [userData, router]);
+
+  console.log(boards);
 
   return (
     <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center shrink-0">

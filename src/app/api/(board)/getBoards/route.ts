@@ -1,24 +1,18 @@
 import { prisma } from "@/server/db";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const schema = z.object({
-  id: z.string().optional(),
-});
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
-
-  const user = await prisma?.user.findFirst({
+  console.log("ID JE", id)
+  const boards = await prisma.workspace.findMany({
     where: {
-      id: id?.toString(),
+      id: id as string,
     },
     select: {
       name: true,
       id: true,
-      image: true,
-      Workspace: {
+      boards: {
         select: {
           name: true,
           id: true,
@@ -27,5 +21,5 @@ export async function GET(request: Request) {
     },
   });
 
-  return NextResponse.json(user);
+  return NextResponse.json(boards);
 }
