@@ -25,7 +25,7 @@ const Button = ({
         "relative inline-flex items-center gap-2 whitespace-nowrap rounded transition-all duration-75",
         className,
         {
-          "border border-[#151516] bg-[#151516] text-[#EEEFF1]  hover:bg-opacity-80 flex justify-center":
+          "border border-[#151615] bg-[#151516] text-[#EEEFF1]  hover:bg-opacity-80 flex justify-center":
             variant === "primary",
           "border-[rgb(49,50,72)] bg-[rgb(39,41,57)] text-[#EEEFF1] hover:bg-opacity-90 flex justify-center":
             variant === "secondary",

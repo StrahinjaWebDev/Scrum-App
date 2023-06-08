@@ -1,6 +1,6 @@
 import React from "react";
-import Dropdown from "../../../components/ui/Dropdown";
-import Button from "../../../components/ui/Button";
+import Dropdown from "../../../../../components/ui/Dropdown";
+import Button from "../../../../../components/ui/Button";
 import { signOut } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";

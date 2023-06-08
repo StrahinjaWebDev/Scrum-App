@@ -11,7 +11,7 @@ const Signin = async () => {
   return (
     <div className="w-screen items-center flex justify-center">
       <section className=" opacity-80 h-[100vh] py-20 lg:py-[120px] flex items-center justify-center">
-        <div className="container mx-auto ">
+        <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap ">
             <div className="w-full px-4 ">
               <div className="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px] bg-gradient-to-r to-black  from-white border">

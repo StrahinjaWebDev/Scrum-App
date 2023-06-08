@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "../../../components/ui/Button";
 import axios from "axios";
-import UserDropdown from "../dropdowns/UserDropdown";
+import UserDropdown from "./(components)/dropdowns/UserDropdown";
 import type { User } from "@/types";
 import Tooltip from "@/components/ui/Tooltip";
 import { getBaseUrl } from "@/lib/getBaseUrl";
@@ -15,6 +15,8 @@ import type { Board } from "@prisma/client";
 import Link from "next/link";
 import classNames from "classnames";
 import Loader from "@/components/ui/Loader";
+import CreateBoard from "./(components)/modal/CreateBoard";
+import { AnimatePresence } from "framer-motion";
 
 interface Props {
   user: User | null;
@@ -24,6 +26,7 @@ const Sidebar = ({ user }: Props) => {
   const [dropdown, setDropdown] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
   const [boards, setBoards] = useState([]);
+  const [createBoardModal, setCreateBoardModal] = useState(false);
 
   const { data: session, status } = useSession();
 
@@ -96,7 +99,20 @@ const Sidebar = ({ user }: Props) => {
         </div>
         <div className=" flex flex-col justify-center items-center gap-1">
           <>
-            <p className="flex w-full pl-4 text-[13px] text-secondary hover:bg-dark-3">
+            <Button
+              variant="primary"
+              size="sm"
+              className="bg-opacity-30 hover:bg-dark-3 mr-[80px]"
+              onClick={() => setCreateBoardModal(true)}
+            >
+              Create board
+            </Button>
+            <AnimatePresence>
+              {createBoardModal && (
+                <CreateBoard onClose={() => setCreateBoardModal(false)} />
+              )}
+            </AnimatePresence>
+            <p className="flex w-full pl-4 text-[13px] text-secondary hover:bg-dark-3 mt-2">
               Your boards
             </p>
             {boards.map((board: Board) => (
