@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "../../../components/ui/Button";
 import axios from "axios";
@@ -11,8 +11,10 @@ import type { User } from "@/types";
 import Tooltip from "@/components/ui/Tooltip";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 import { getBoards } from "@/getBoards";
-import { Board } from "@prisma/client";
+import type { Board } from "@prisma/client";
 import Link from "next/link";
+import path from "path";
+import classNames from "classnames";
 
 interface Props {
   user: User | null;
@@ -25,6 +27,7 @@ const Sidebar = ({ user }: Props) => {
 
   const { data: session, status } = useSession();
 
+  const pathname = usePathname();
   const router = useRouter();
   const baseUrl = getBaseUrl();
 
@@ -60,8 +63,6 @@ const Sidebar = ({ user }: Props) => {
     }
   }, [userData, router]);
 
-  console.log(boards);
-
   return (
     <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center shrink-0">
       <div className="h-20 w-full">
@@ -93,12 +94,29 @@ const Sidebar = ({ user }: Props) => {
             )}
           </div>
         </div>
-        <div className="w-full flex flex-col">
-          {boards.map((board: Board) => (
-            <div key={board.id}>
-              <Link href={`/board/${board.id}`}>{board.name}</Link>
-            </div>
-          ))}
+        <div className=" flex flex-col justify-center items-center gap-1">
+          <>
+            <p className="flex w-full pl-4 text-[13px] text-secondary hover:bg-dark-3">
+              Your boards
+            </p>
+            {boards.map((board: Board) => (
+              <div key={board.id}>
+                <Link
+                  className={classNames(
+                    "text-stone-300 rounded-sm flex pl-4 w-[200px] font-medium text-[14px] hover:bg-dark-3 h-6",
+                    {
+                      "bg-dark-3": `/board/${board.id}` === pathname,
+                      "bg-none": `/board/${board.id}` !== pathname,
+                    }
+                  )}
+                  key={board.id}
+                  href={`/board/${board.id}`}
+                >
+                  {board.name}
+                </Link>
+              </div>
+            ))}
+          </>
         </div>
       </div>
     </div>

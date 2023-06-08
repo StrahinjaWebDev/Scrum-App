@@ -79,7 +79,7 @@ model Board {
   Column      Column[]
 
   @@unique([id])
-  @@unique([workspaceId])
+  @@index([workspaceId])
 }
 
 model Column {
@@ -90,7 +90,7 @@ model Column {
   Task    Task?
 
   @@unique([id])
-  @@unique([boardId])
+  @@index([boardId])
 }
 
 model Task {
