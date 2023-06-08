@@ -6,6 +6,6 @@ interface Props {
   };
 }
 
-export default function Board({ params: { boardid } }: Props) {
+export default async function Board({ params: { boardid } }: Props) {
   return <div className="text-white">page {boardid}</div>;
 }

@@ -13,8 +13,8 @@ import { getBaseUrl } from "@/lib/getBaseUrl";
 import { getBoards } from "@/getBoards";
 import type { Board } from "@prisma/client";
 import Link from "next/link";
-import path from "path";
 import classNames from "classnames";
+import Loader from "@/components/ui/Loader";
 
 interface Props {
   user: User | null;
@@ -39,7 +39,7 @@ const Sidebar = ({ user }: Props) => {
       }
     };
     fetchBoards();
-  }, [userData?.Workspace.id]);
+  }, [userData?.Workspace?.id]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -63,7 +63,7 @@ const Sidebar = ({ user }: Props) => {
     }
   }, [userData, router]);
 
-  return (
+  return userData?.Workspace?.id ? (
     <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center shrink-0">
       <div className="h-20 w-full">
         <div className="flex items-center py-4 w-full justify-around">
@@ -119,6 +119,10 @@ const Sidebar = ({ user }: Props) => {
           </>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Loader variant="primary" />
     </div>
   );
 };

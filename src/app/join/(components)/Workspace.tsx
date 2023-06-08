@@ -36,7 +36,7 @@ const Workspace = ({ id, name }: Props) => {
           body.userId && body.userId && joinUserToWorkspace();
         }}
         variant="secondary"
-        className="w-[6em] border-[1px]  border-secondary bg-opacity-70 h-[2.5]"
+        className="w-[6em] border-[1px] border-opacity-40 border-stone-600 bg-opacity-70 h-[2.5]"
       >
         Join
       </Button>

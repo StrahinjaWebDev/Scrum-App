@@ -1,10 +1,6 @@
 import React from "react";
 import "./globals.scss";
 import Providers from "@/provider/Providers";
-import Sidebar from "./(home)/sidebar";
-import { getUser } from "@/getUser";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export const metadata = {
   title: "Linear",
@@ -16,16 +12,10 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-
-  const data = await getUser(session?.user.id ?? "");
   return (
     <html lang="en">
-      <body className={`bg-primary mx-auto flex relative`}>
-        <Providers>
-          <Sidebar user={data} />
-          {children}
-        </Providers>
+      <body className={`bg-primary flex relative`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
