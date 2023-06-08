@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import type { ApiCreateNewWorkspaceRequest } from "../api/(workspace)/createWorkspace/api-request";
 import { apiCreateWorkspaceValidator } from "../api/(workspace)/createWorkspace/api-request";
-import { Toaster } from "react-hot-toast";
 import { toastSuccess, toastWarning } from "@/components/ui/Toasters";
 import { z } from "zod";
 import { getBaseUrl } from "@/lib/getBaseUrl";

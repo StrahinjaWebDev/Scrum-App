@@ -34,7 +34,7 @@ const Organisation = () => {
       setUserData(user);
     };
     getUser();
-  }, []);
+  }, [baseUrl]);
 
   useEffect(() => {
     if (userData?.Workspace === undefined || userData?.Workspace === null) {

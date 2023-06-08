@@ -11,6 +11,8 @@ import type { User } from "@/types";
 import Tooltip from "@/components/ui/Tooltip";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 import { getBoards } from "@/getBoards";
+import { Board } from "@prisma/client";
+import Link from "next/link";
 
 interface Props {
   user: User | null;
@@ -27,7 +29,6 @@ const Sidebar = ({ user }: Props) => {
   const baseUrl = getBaseUrl();
 
   useEffect(() => {
-    console.log("TEST");
     const fetchBoards = async () => {
       if (userData?.Workspace.id) {
         const boards = await getBoards(userData?.Workspace.id);
@@ -45,7 +46,7 @@ const Sidebar = ({ user }: Props) => {
     };
 
     getUser();
-  }, []);
+  }, [baseUrl]);
 
   useEffect(() => {
     if (session === null && status === "unauthenticated") {
@@ -91,6 +92,13 @@ const Sidebar = ({ user }: Props) => {
               />
             )}
           </div>
+        </div>
+        <div className="w-full flex flex-col">
+          {boards.map((board: Board) => (
+            <div key={board.id}>
+              <Link href={`/board/${board.id}`}>{board.name}</Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>

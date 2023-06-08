@@ -1,10 +1,5 @@
 import { prisma } from "@/server/db";
 import { NextResponse } from "next/server";
-import { z } from "zod";
-
-const schema = z.object({
-  id: z.string().optional(),
-});
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
