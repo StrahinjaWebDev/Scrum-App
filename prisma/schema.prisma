@@ -83,24 +83,25 @@ model Board {
 }
 
 model Column {
-  id      String @id @default(cuid())
+  id      String  @id @default(cuid())
   name    String
-  board   Board  @relation(fields: [boardId], references: [id])
+  board   Board   @relation(fields: [boardId], references: [id])
   boardId String
-  Task    Task?
+  Issue   Issue[]
 
   @@unique([id])
   @@index([boardId])
 }
 
-model Task {
-  id        String   @id @default(cuid())
-  name      String
-  column    Column   @relation(fields: [columnId], references: [id])
-  columnId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Issue {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  column      Column   @relation(fields: [columnId], references: [id])
+  columnId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@unique([id])
-  @@unique([columnId])
+  @@index([columnId])
 }

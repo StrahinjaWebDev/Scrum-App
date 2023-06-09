@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Button from "@/components/ui/Button";
 import CreateColumnModal from "./modals/CreateColumnModal";
-import { Column } from "@prisma/client";
+import type { Column } from "@prisma/client";
 
 interface Props {
   boardId: string;
