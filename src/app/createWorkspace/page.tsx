@@ -37,6 +37,7 @@ const CreateNewWorkspace = () => {
       }
     }
   };
+
   return (
     <div className="flex flex-col justify-center items-center bg-slate-300 bg-opacity-5 h-[100vh] gap-6 w-full">
       <span className="text-fifth text-2xl font-medium">

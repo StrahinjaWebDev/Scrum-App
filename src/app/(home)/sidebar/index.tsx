@@ -25,7 +25,7 @@ interface Props {
 const Sidebar = ({ user }: Props) => {
   const [dropdown, setDropdown] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
-  const [boards, setBoards] = useState([]);
+  const [boards, setBoards] = useState<Board[]>([]);
   const [createBoardModal, setCreateBoardModal] = useState(false);
 
   const { data: session, status } = useSession();
@@ -33,6 +33,10 @@ const Sidebar = ({ user }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
   const baseUrl = getBaseUrl();
+
+  const addBoard = (newBoard: Board) => {
+    setBoards((prevBoards: Board[]) => [...prevBoards, newBoard]);
+  };
 
   useEffect(() => {
     const fetchBoards = async () => {
@@ -109,7 +113,11 @@ const Sidebar = ({ user }: Props) => {
             </Button>
             <AnimatePresence>
               {createBoardModal && (
-                <CreateBoard onClose={() => setCreateBoardModal(false)} />
+                <CreateBoard
+                  onClose={() => setCreateBoardModal(false)}
+                  workspaceId={userData?.Workspace?.id}
+                  addBoard={addBoard}
+                />
               )}
             </AnimatePresence>
             <p className="flex w-full pl-4 text-[13px] text-secondary hover:bg-dark-3 mt-2">
