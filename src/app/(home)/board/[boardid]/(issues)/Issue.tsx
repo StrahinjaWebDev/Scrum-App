@@ -3,6 +3,7 @@ import { getIssues } from "@/getIssues";
 import { Issue } from "@prisma/client";
 import React, { useState, useEffect } from "react";
 import { AssigneeIcon } from "../../../../../../public/svgs/AssigneIcon";
+import Loader from "@/components/ui/Loader";
 
 interface Props {
   columnId: string;
@@ -21,7 +22,7 @@ const Issue = ({ columnId }: Props) => {
     fetchIssues();
   }, [columnId]);
 
-  return (
+  return columnId ? (
     <>
       {issues.map((issue: Issue) => (
         <div
@@ -44,6 +45,10 @@ const Issue = ({ columnId }: Props) => {
         </div>
       ))}
     </>
+  ) : (
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Loader variant="primary" className="bg-red-500" />
+    </div>
   );
 };
 

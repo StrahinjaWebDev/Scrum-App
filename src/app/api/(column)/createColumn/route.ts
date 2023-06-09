@@ -17,9 +17,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (column.id) {
-      return NextResponse.json(column);
-    }
+    return NextResponse.json(column);
   } catch (error) {
     const errorMessage = (error as Error).toString();
     return new Response(errorMessage, { status: 500 });

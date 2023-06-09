@@ -4,6 +4,7 @@ import Sidebar from "../sidebar";
 import { getUser } from "@/getUser";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import Loader from "@/components/ui/Loader";
 
 export default async function BoardLayout({
   children,
@@ -12,7 +13,7 @@ export default async function BoardLayout({
 }) {
   const session = await getServerSession(authOptions);
   const data = await getUser(session?.user.id ?? "");
-  return (
+  return session?.user.id ? (
     <>
       <aside className="flex relative w-full">
         <Sidebar user={data} />
@@ -22,5 +23,9 @@ export default async function BoardLayout({
         </div>
       </aside>
     </>
+  ) : (
+    <div className="h-screen w-screen flex justify-center items-center">
+      <Loader variant="primary" />
+    </div>
   );
 }
