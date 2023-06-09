@@ -30,9 +30,14 @@ const CreateBoard = ({ onClose, workspaceId, addBoard }: Props) => {
         workspaceId: workspaceId,
       };
       await apiCreateBoardValidator.parseAsync(newBoard);
-      await axios.post(`${baseUrl}/api/createBoard`, newBoard);
+      const response = await axios.post(`${baseUrl}/api/createBoard`, newBoard);
+      const createdBoard: Board = {
+        id: response.data.id,
+        name: newBoard.name,
+        workspaceId: newBoard.workspaceId,
+      };
+      addBoard(createdBoard);
       onClose();
-      addBoard(newBoard);
       toastSuccess("Success", "Board created successfully");
     } catch (err) {
       if (err instanceof z.ZodError) {

@@ -7,3 +7,10 @@ export interface User {
     name: string;
   };
 }
+
+export interface Board {
+  id: ?string;
+  workspaceId: string;
+  name: string;
+  Columns: Column[];
+}
