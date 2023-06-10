@@ -2,6 +2,7 @@
 
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
+import { toastSuccess, toastWarning } from "@/components/ui/Toasters";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 import type { User } from "@prisma/client";
 import axios from "axios";
@@ -23,8 +24,11 @@ const AssigneDropdown = ({ onClose, users, issueId }: Props) => {
         id: issueId,
         userId: userId,
       });
-    } catch (error) {
-      // console.log(error);
+      onClose();
+      toastSuccess("User assigned successfully");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toastWarning(error);
     }
   };
 
@@ -36,25 +40,25 @@ const AssigneDropdown = ({ onClose, users, issueId }: Props) => {
       <Input variant="ghost" placeholder="Assign to..." />
       {users &&
         users.map((user: User) => (
-          <>
-            <button onClick={() => changeAssigne(user.id)}>
-              <div
-                key={user.id}
-                className="w-[300px] h-[30px] relative hover:bg-gray-500 hover:bg-opacity-50 rounded-md flex items-center"
-              >
-                <Image
-                  src={user?.image || ""}
-                  width={20}
-                  height={20}
-                  className="rounded-full h-5 ml-2"
-                  alt="userImg"
-                />
-                <p className="text-white font-medium text-[13px] pl-2 flex items-center">
-                  {user.name}
-                </p>
-              </div>
-            </button>
-          </>
+          <div
+            key={user.id}
+            className="w-[300px] h-[30px] relative hover:bg-gray-500 hover:bg-opacity-50 rounded-md flex items-center"
+            onClick={() => changeAssigne(user.id)}
+            onKeyPress={() => changeAssigne(user.id)}
+            role="button"
+            tabIndex={0}
+          >
+            <Image
+              src={user?.image || ""}
+              width={20}
+              height={20}
+              className="rounded-full h-5 ml-2"
+              alt="userImg"
+            />
+            <p className="text-white font-medium text-[13px] pl-2 flex items-center">
+              {user.name}
+            </p>
+          </div>
         ))}
     </Dropdown>
   );
