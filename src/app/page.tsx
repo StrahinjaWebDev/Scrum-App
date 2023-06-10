@@ -9,8 +9,10 @@ export default async function Home() {
   const data = await getUser(session?.user.id ?? "");
 
   return (
-    <div className="flex w-full h-full">
-      <Sidebar user={data} />
-    </div>
+    session && (
+      <div className="flex w-full h-full">
+        <Sidebar user={data} />
+      </div>
+    )
   );
 }

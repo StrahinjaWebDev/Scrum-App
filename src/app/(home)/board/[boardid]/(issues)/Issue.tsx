@@ -56,6 +56,7 @@ const Issue = ({ columnId, workspaceId }: Props) => {
                   <AssigneDropdown
                     users={users}
                     onClose={() => openAssigneeModal("")}
+                    issueId={issue.id}
                   />
                 )}
               </button>
