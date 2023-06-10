@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Button from "@/components/ui/Button";
 import CreateColumnModal from "./modals/CreateColumnModal";
 import type { Column } from "@prisma/client";
+import { AnimatePresence } from "framer-motion";
 
 interface Props {
   boardId: string;
@@ -23,11 +24,13 @@ const CreateColumn = ({ boardId, columns }: Props) => {
         Create Column
       </Button>
       {modal && (
-        <CreateColumnModal
-          boardId={boardId}
-          onClose={() => setModal(false)}
-          columns={columns}
-        />
+        <AnimatePresence>
+          <CreateColumnModal
+            boardId={boardId}
+            onClose={() => setModal(false)}
+            columns={columns}
+          />
+        </AnimatePresence>
       )}
     </>
   );

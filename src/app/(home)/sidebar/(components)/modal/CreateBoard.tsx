@@ -50,6 +50,7 @@ const CreateBoard = ({ onClose, workspaceId, addBoard }: Props) => {
     <Modal
       className="w-[30em] py-8 px-4 bg-dark-4 border-stone-300 border-opacity-10 bg-opacity-90"
       onClose={onClose}
+      hasOverlay
     >
       <div className="flex flex-col items-center gap-5">
         <p className="text-center text-2xl font-semibold text-primary text-opacity-90">

@@ -64,6 +64,7 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
     <Modal
       onClose={onClose}
       className="bg-dark-2 bg-opacity-90 border-gray-700 border-opacity-10 w-[750px] h-[15em] pl-6"
+      hasOverlay
     >
       <Modal.Header onClose={onClose} className="text-white text-sm">
         New Issue
@@ -83,7 +84,7 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
       <div className="flex justify-end mr-3">
         <Button
           variant="danger"
-          className="w-[7em] h-[2.2em] text-sm mt-12"
+          className="w-[7em] h-[2.2em] text-sm mb-4 mr-1"
           onClick={createIssue}
         >
           Create issue
