@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Issue from "../board/[boardid]/(issues)/Issue";
 import type { Column } from "@prisma/client";
-import AddIssueModal from "./(components)/modals/AddIssueModal";
+import CreateIssueModal from "./(components)/modals/CreateIssueModal";
 
 interface Props {
   column: Column;
@@ -25,7 +25,12 @@ const Columns = ({ column }: Props) => {
         >
           +
         </button>
-        {modal && <AddIssueModal onClose={() => setModal(false)} />}
+        {modal && (
+          <CreateIssueModal
+            onClose={() => setModal(false)}
+            columnId={column.id}
+          />
+        )}
       </div>
 
       <Issue columnId={column.id} />
