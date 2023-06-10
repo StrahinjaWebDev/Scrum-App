@@ -35,6 +35,7 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
       const createdIssue: Issue = {
         id: response.data.id,
         name: newIssue.name,
+        userId: response.data.userId,
         description: newIssue.description,
         columnId: newIssue.columnId,
         createdAt: new Date(),

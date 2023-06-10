@@ -54,7 +54,7 @@ model User {
   workspaceId   String?
   Issue         Issue[]
 
-  @@unique([workspaceId])
+  @@index([workspaceId])
 }
 
 model VerificationToken {
