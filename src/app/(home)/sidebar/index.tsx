@@ -75,24 +75,29 @@ const Sidebar = ({ user }: Props) => {
       <div className="h-20 w-full">
         <div className="flex items-center py-4 w-full justify-around">
           <div>
-            <Tooltip text={userData?.Workspace?.name ?? ""}>
-              <p className="text-stone-300 text-sm whitespace-nowrap overflow-hidden text-ellipsis font-bold w-[140px]">
+            <Tooltip text={userData?.Workspace?.name ?? ""} className="z-99">
+              <p className="text-stone-300 text-sm whitespace-nowrap overflow-hidden text-ellipsis font-bold">
                 {userData?.Workspace?.name}
               </p>
             </Tooltip>
           </div>
-          <div className="relative">
-            <Button size="sm" variant="ghost">
-              <Image
-                src={user?.image || ""}
-                title={user?.name || ""}
-                width={20}
-                height={20}
-                className="rounded-full"
-                alt="userImg"
-                onClick={() => setDropdown(true)}
-              />
-            </Button>
+          <div className="relative z-0">
+            <Tooltip text={user?.name || ""}>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="hover:bg-slate-500 hover:bg-opacity-20"
+              >
+                <Image
+                  src={user?.image || ""}
+                  width={20}
+                  height={20}
+                  className="rounded-full"
+                  alt="userImg"
+                  onClick={() => setDropdown(true)}
+                />
+              </Button>
+            </Tooltip>
             {dropdown && session?.user.id && (
               <UserDropdown
                 onClose={() => setDropdown(false)}

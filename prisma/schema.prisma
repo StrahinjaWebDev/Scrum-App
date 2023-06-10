@@ -52,6 +52,7 @@ model User {
   sessions      Session[]
   Workspace     Workspace? @relation(fields: [workspaceId], references: [id])
   workspaceId   String?
+  Issue         Issue[]
 
   @@unique([workspaceId])
 }
@@ -101,7 +102,10 @@ model Issue {
   columnId    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      String?
 
   @@unique([id])
+  @@index([userId])
   @@index([columnId])
 }

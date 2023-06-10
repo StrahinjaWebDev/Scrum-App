@@ -7,9 +7,10 @@ import CreateIssueModal from "./(components)/modals/CreateIssueModal";
 
 interface Props {
   column: Column;
+  workspaceId: string;
 }
 
-const Columns = ({ column }: Props) => {
+const Columns = ({ column, workspaceId }: Props) => {
   const [modal, setModal] = useState(false);
 
   return (
@@ -33,7 +34,7 @@ const Columns = ({ column }: Props) => {
         )}
       </div>
 
-      <Issue columnId={column.id} />
+      <Issue columnId={column.id} workspaceId={workspaceId} />
     </div>
   );
 };
