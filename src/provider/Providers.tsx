@@ -3,6 +3,7 @@
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
+import ReduxProvider from "@/redux/provider";
 
 interface Props {
   children: React.ReactNode;
@@ -11,10 +12,12 @@ interface Props {
 const Providers = ({ children }: Props) => {
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
-      <SessionProvider>{children}</SessionProvider>
+      <ReduxProvider>
+        <div>
+          <Toaster />
+        </div>
+        <SessionProvider>{children}</SessionProvider>
+      </ReduxProvider>
     </>
   );
 };

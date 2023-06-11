@@ -17,6 +17,7 @@ import classNames from "classnames";
 import Loader from "@/components/ui/Loader";
 import CreateBoard from "./(components)/modal/CreateBoard";
 import { AnimatePresence } from "framer-motion";
+import { useAppSelector } from "@/redux/store";
 
 interface Props {
   user: User | null;
@@ -27,6 +28,10 @@ const Sidebar = ({ user }: Props) => {
   const [userData, setUserData] = useState<User | null>(null);
   const [boards, setBoards] = useState<Board[]>([]);
   const [createBoardModal, setCreateBoardModal] = useState(false);
+
+  const reduxTest = useAppSelector((state) => state.authReducer.value.username);
+
+  console.log(reduxTest);
 
   const { data: session, status } = useSession();
 
