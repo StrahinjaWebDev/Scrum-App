@@ -4,6 +4,8 @@ import React from "react";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 import ReduxProvider from "@/redux/provider";
+import { ApiProvider } from "@reduxjs/toolkit/query/react";
+import { boardsApi } from "@/redux/api/boards-api";
 
 interface Props {
   children: React.ReactNode;
