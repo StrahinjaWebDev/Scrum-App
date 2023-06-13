@@ -3,9 +3,9 @@
 import React from "react";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
-import ReduxProvider from "@/redux/provider";
-import { ApiProvider } from "@reduxjs/toolkit/query/react";
-import { boardsApi } from "@/redux/api/boards-api";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
+import type { User } from "@prisma/client";
 
 interface Props {
   children: React.ReactNode;
@@ -14,12 +14,12 @@ interface Props {
 const Providers = ({ children }: Props) => {
   return (
     <>
-      <ReduxProvider>
+      <Provider store={store}>
         <div>
           <Toaster />
         </div>
         <SessionProvider>{children}</SessionProvider>
-      </ReduxProvider>
+      </Provider>
     </>
   );
 };

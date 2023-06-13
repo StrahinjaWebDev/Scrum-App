@@ -18,7 +18,7 @@ interface Props {
   addBoard: (newBoard: Board) => void;
 }
 
-const CreateBoard = ({ onClose, workspaceId, addBoard }: Props) => {
+const CreateBoardModal = ({ onClose, workspaceId, addBoard }: Props) => {
   const [name, setName] = useState("");
 
   const baseUrl = getBaseUrl();
@@ -79,4 +79,4 @@ const CreateBoard = ({ onClose, workspaceId, addBoard }: Props) => {
   );
 };
 
-export default CreateBoard;
+export default CreateBoardModal;
