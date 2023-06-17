@@ -1,24 +1,24 @@
 import React from "react";
 import Dropdown from "../../../../../components/ui/Dropdown";
 import Button from "../../../../../components/ui/Button";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { getBaseUrl } from "@/lib/getBaseUrl";
 
 interface Props {
-  userId: string;
   onClose: () => void;
 }
 
-const UserDropdown = ({ onClose, userId }: Props) => {
+const UserDropdown = ({ onClose }: Props) => {
   const { push } = useRouter();
   const baseUrl = getBaseUrl();
+  const { data: session } = useSession();
 
   const leaveWorkspace = async () => {
     try {
       await axios.put(`${baseUrl}/api/leaveWorkspace`, {
-        userId: userId,
+        userId: session?.user.id,
       });
       push("/join");
     } catch (error) {}

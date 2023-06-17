@@ -7,14 +7,15 @@ import React, { useState } from "react";
 import UserDropdown from "./dropdowns/UserDropdown";
 import type { User } from "@/types";
 import { useSession } from "next-auth/react";
+import { useAppSelector } from "@/redux/store";
 
 interface Props {
   user: User | null;
-  userData: User | null;
 }
 
-const SidebarHeader = ({ user, userData }: Props) => {
+const SidebarHeader = ({ user }: Props) => {
   const [dropdown, setDropdown] = useState(false);
+  const userData = useAppSelector((state) => state.userData);
 
   const { data: session } = useSession();
 
@@ -45,10 +46,7 @@ const SidebarHeader = ({ user, userData }: Props) => {
           </Button>
         </Tooltip>
         {dropdown && session?.user && (
-          <UserDropdown
-            onClose={() => setDropdown(false)}
-            userId={session?.user ? session.user.id : ""}
-          />
+          <UserDropdown onClose={() => setDropdown(false)} />
         )}
       </div>
     </div>

@@ -24,7 +24,6 @@ const Sidebar = ({ user }: Props) => {
   const userData = useAppSelector((state) => state.userData);
 
   const { data } = useGetBoardsQuery(userData?.Workspace?.id ?? "");
-  const boards = useAppSelector((state) => state.boards) || [];
 
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -51,12 +50,12 @@ const Sidebar = ({ user }: Props) => {
 
   return userData?.Workspace?.id ? (
     <div className="w-[220px] h-[100vh] bg-slate-200 bg-opacity-5 border-r flex flex-col border-gray-500 border-opacity-20 items-center shrink-0">
-      <SidebarHeader user={user} userData={userData} />
-      <CreateBoard boards={boards} userData={userData} />
-      <Boards boards={boards} />
+      <SidebarHeader user={user} />
+      <CreateBoard />
+      <Boards />
     </div>
   ) : (
-    <div className="h-screen w-screen flex justify-center items-center">
+    <div className="w-[220px] h-[100vh] flex justify-center items-center">
       <Loader variant="primary" />
     </div>
   );

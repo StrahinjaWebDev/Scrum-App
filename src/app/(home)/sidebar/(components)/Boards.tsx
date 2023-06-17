@@ -1,15 +1,14 @@
 import Loader from "@/components/ui/Loader";
+import { useAppSelector } from "@/redux/store";
 import type { Board } from "@prisma/client";
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-interface Props {
-  boards: Board[] | undefined;
-}
 
-const Boards = ({ boards }: Props) => {
+const Boards = () => {
   const pathname = usePathname();
+  const boards = useAppSelector((state) => state.boards) || [];
 
   return (
     <div className="mt-2">

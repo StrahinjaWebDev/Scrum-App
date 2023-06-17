@@ -11,23 +11,29 @@ import { getBaseUrl } from "@/lib/getBaseUrl";
 import { toastSuccess, toastWarning } from "@/components/ui/Toasters";
 import { z } from "zod";
 import type { Board } from "@prisma/client";
+import { useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { setBoards } from "@/redux/slices/board-slice";
 
 interface Props {
   onClose: () => void;
   workspaceId: string;
-  addBoard: (newBoard: Board) => void;
 }
 
-const CreateBoardModal = ({ onClose, workspaceId, addBoard }: Props) => {
+const CreateBoardModal = ({ onClose }: Props) => {
   const [name, setName] = useState("");
 
+  const userData = useAppSelector((state) => state.userData);
+  const boards = useAppSelector((state) => state.boards) || [];
+
   const baseUrl = getBaseUrl();
+  const dispatch = useDispatch();
 
   const createBoard = async () => {
     try {
       const newBoard: ApiCreateNewBoardRequest = {
         name: name,
-        workspaceId: workspaceId,
+        workspaceId: userData.Workspace?.id ?? "",
       };
       await apiCreateBoardValidator.parseAsync(newBoard);
       const response = await axios.post(`${baseUrl}/api/createBoard`, newBoard);
@@ -36,9 +42,9 @@ const CreateBoardModal = ({ onClose, workspaceId, addBoard }: Props) => {
         name: newBoard.name,
         workspaceId: newBoard.workspaceId,
       };
-      addBoard(createdBoard);
       onClose();
       toastSuccess("Success", "Board created successfully");
+      dispatch(setBoards([...boards, createdBoard]));
     } catch (err) {
       if (err instanceof z.ZodError) {
         toastWarning("Failed", err.issues[0].message);
