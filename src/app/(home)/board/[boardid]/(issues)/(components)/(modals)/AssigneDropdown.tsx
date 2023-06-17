@@ -4,7 +4,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { toastSuccess, toastWarning } from "@/components/ui/Toasters";
 import { getBaseUrl } from "@/lib/getBaseUrl";
-import type { User } from "@prisma/client";
+import type { Issue, User } from "@prisma/client";
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
@@ -13,19 +13,36 @@ interface Props {
   onClose: () => void;
   users: User[];
   issueId: string;
+  issues: Issue[];
+  setIssues: React.Dispatch<React.SetStateAction<Issue[]>>;
 }
 
-const AssigneDropdown = ({ onClose, users, issueId }: Props) => {
+const AssigneDropdown = ({
+  onClose,
+  users,
+  issueId,
+  issues,
+  setIssues,
+}: Props) => {
   const baseUrl = getBaseUrl();
 
-  const changeAssigne = async (userId: string) => {
+  const changeAssigne = async (assigneId: string, assigneImg: string) => {
     try {
       await axios.patch(`${baseUrl}/api/assignUser`, {
         id: issueId,
-        userId: userId,
+        assigneId: assigneId,
+        assigneImg: assigneImg,
       });
       onClose();
       toastSuccess("User assigned successfully");
+
+      const updatedIssues = issues.map((issue: Issue) => {
+        if (issue.id === issueId) {
+          return { ...issue, assigneImg: assigneImg };
+        }
+        return issue;
+      });
+      setIssues(updatedIssues);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toastWarning(error);
@@ -43,8 +60,8 @@ const AssigneDropdown = ({ onClose, users, issueId }: Props) => {
           <div
             key={user.id}
             className="w-[300px] h-[30px] relative hover:bg-gray-500 hover:bg-opacity-50 rounded-md flex items-center"
-            onClick={() => changeAssigne(user.id)}
-            onKeyPress={() => changeAssigne(user.id)}
+            onClick={() => changeAssigne(user.id, user.image ?? "")}
+            onKeyPress={() => changeAssigne(user.id, user.image ?? "")}
             role="button"
             tabIndex={0}
           >

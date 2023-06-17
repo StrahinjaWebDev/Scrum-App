@@ -1,12 +1,14 @@
 "use client";
 
 import { getIssues } from "@/getIssues";
-import type { Issue as IssueType, User } from "@prisma/client";
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Issue, Issue as IssueType, User } from "@prisma/client";
 import React, { useState, useEffect } from "react";
 import { AssigneeIcon } from "../../../../../../public/svgs/AssigneIcon";
 import Loader from "@/components/ui/Loader";
 import AssigneDropdown from "./(components)/(modals)/AssigneDropdown";
 import { getUsersInWorkspace } from "@/getUsersInWorkspace";
+import Image from "next/image";
 
 interface Props {
   columnId: string;
@@ -14,13 +16,9 @@ interface Props {
 }
 
 const Issue = ({ columnId, workspaceId }: Props) => {
-  const [issues, setIssues] = useState([]);
+  const [issues, setIssues] = useState<Issue[]>([]);
   const [issueId, setIssueId] = useState("");
   const [users, setUsers] = useState<User[] | []>([]);
-
-  const openAssigneeModal = (issueId: string) => {
-    setIssueId(issueId);
-  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -34,11 +32,19 @@ const Issue = ({ columnId, workspaceId }: Props) => {
     const fetchIssues = async () => {
       if (columnId) {
         const issues = await getIssues(columnId);
-        setIssues(issues);
+        const updatedIssues = issues.map((issue: Issue) => {
+          const assigne = users.find((user) => user.id === issue.assigneId);
+          if (assigne) {
+            const assigneImage = assigne.image;
+            return { ...issue, assigneImage };
+          }
+          return issue;
+        });
+        setIssues(updatedIssues);
       }
     };
     fetchIssues();
-  }, [columnId]);
+  }, [columnId, users]);
 
   return columnId ? (
     <>
@@ -50,13 +56,28 @@ const Issue = ({ columnId, workspaceId }: Props) => {
           <div className="flex justify-between flex-col">
             <div className="flex justify-between">
               <p className="text-white font-semibold">{issue.name}</p>
-              <button onClick={() => openAssigneeModal(issue.id)}>
-                <AssigneeIcon />
+              <button onClick={() => setIssueId(issue.id)}>
+                {issue?.assigneImg !== null ? (
+                  <>
+                    <Image
+                      src={issue?.assigneImg || ""}
+                      width={20}
+                      height={20}
+                      className="rounded-full"
+                      alt="assigneImg"
+                    />
+                  </>
+                ) : (
+                  <AssigneeIcon />
+                )}
+
                 {issueId === issue.id && (
                   <AssigneDropdown
                     users={users}
-                    onClose={() => openAssigneeModal("")}
+                    onClose={() => setIssueId("")}
                     issueId={issue.id}
+                    issues={issues}
+                    setIssues={setIssues}
                   />
                 )}
               </button>

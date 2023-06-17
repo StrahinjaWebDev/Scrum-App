@@ -1,8 +1,6 @@
 import React from "react";
 import "./globals.scss";
 import Providers from "@/provider/Providers";
-import { boardsApi } from "@/redux/api/boards-api";
-import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 
 export const metadata = {
   title: "Linear",

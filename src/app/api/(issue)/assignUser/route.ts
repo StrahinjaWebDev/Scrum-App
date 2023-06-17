@@ -2,12 +2,12 @@ import { prisma } from "@/server/db";
 import { NextResponse } from "next/server";
 
 export async function PATCH(request: Request) {
-  const { id, userId } = await request.json();
+  const { id, assigneId, assigneImg } = await request.json();
 
   try {
     const updatedIssue = await prisma.issue.update({
       where: { id: id },
-      data: { userId: userId },
+      data: { assigneId: assigneId, assigneImg: assigneImg },
     });
 
     return NextResponse.json(updatedIssue);

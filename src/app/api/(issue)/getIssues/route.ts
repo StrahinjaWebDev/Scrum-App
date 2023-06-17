@@ -12,8 +12,9 @@ export async function GET(request: Request) {
       name: true,
       description: true,
       id: true,
-      userId: true,
+      assigneId: true,
       columnId: true,
+      assigneImg: true,
     },
   });
   return NextResponse.json(issues);

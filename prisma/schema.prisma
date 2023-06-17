@@ -102,10 +102,11 @@ model Issue {
   columnId    String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  assigne     User?    @relation(fields: [userId], references: [id])
-  userId      String?
+  assigne     User?    @relation(fields: [assigneId], references: [id])
+  assigneId   String?
+  assigneImg  String?
 
   @@unique([id])
-  @@index([userId])
+  @@index([assigneId])
   @@index([columnId])
 }
