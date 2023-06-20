@@ -55,7 +55,7 @@ const Sidebar = ({ user }: Props) => {
       <Boards />
     </div>
   ) : (
-    <div className="w-[220px] h-[100vh] flex justify-center items-center">
+    <div className="w-[220px] h-[100vh] bg-blue-500 flex justify-center items-center">
       <Loader variant="primary" />
     </div>
   );

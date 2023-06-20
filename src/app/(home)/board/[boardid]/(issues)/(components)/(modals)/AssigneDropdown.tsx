@@ -43,39 +43,35 @@ const AssigneDropdown = ({
         return issue;
       });
       setIssues(updatedIssues);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      toastWarning(error);
+    } catch (error) {
+      toastWarning("Something went wrong", "Please try again");
     }
   };
 
   return (
     <Dropdown
       onClose={onClose}
-      className="bg-opacity-80 mt-1 origin-top-left w-[320px] px-3 py-2 backdrop-opacity-90 backdrop-blur-3xl h-auto"
+      className="mt-1 origin-top-left p-1 backdrop-blur-3xl h-auto border-opacity-20"
     >
-      <Input variant="ghost" placeholder="Assign to..." />
+      <Input variant="ghost" placeholder="Assign to..." className="px-3" />
       {users &&
         users.map((user: User) => (
-          <div
+          <button
             key={user.id}
-            className="w-[300px] h-[30px] relative hover:bg-gray-500 hover:bg-opacity-50 rounded-md flex items-center"
+            className="h-[30px] relative hover:bg-stone-700 hover:bg-opacity-30 rounded-md flex items-center gap-1 px-2 w-full"
             onClick={() => changeAssigne(user.id, user.image ?? "")}
-            onKeyPress={() => changeAssigne(user.id, user.image ?? "")}
-            role="button"
-            tabIndex={0}
           >
             <Image
               src={user?.image || ""}
-              width={20}
-              height={20}
-              className="rounded-full h-5 ml-2"
+              width={18}
+              height={18}
+              className="rounded-full h-5"
               alt="userImg"
             />
-            <p className="text-white font-medium text-[13px] pl-2 flex items-center">
+            <p className="text-white font-medium text-[13px] px-2 py-1 flex items-center">
               {user.name}
             </p>
-          </div>
+          </button>
         ))}
     </Dropdown>
   );

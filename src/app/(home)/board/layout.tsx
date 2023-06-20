@@ -13,19 +13,17 @@ export default async function BoardLayout({
 }) {
   const session = await getServerSession(authOptions);
   const data = await getUser(session?.user.id ?? "");
-  return session?.user.id ? (
-    <>
-      <aside className="flex relative w-full">
-        <Sidebar user={data} />
-        <div className="flex flex-col grow">
-          <Header />
-          {children}
-        </div>
-      </aside>
-    </>
-  ) : (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <Loader variant="primary" />
-    </div>
+  return (
+    session?.user.id && (
+      <>
+        <aside className="flex relative w-full">
+          <Sidebar user={data} />
+          <div className="flex flex-col grow">
+            <Header />
+            {children}
+          </div>
+        </aside>
+      </>
+    )
   );
 }
