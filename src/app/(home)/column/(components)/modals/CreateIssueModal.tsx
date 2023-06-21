@@ -38,7 +38,8 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
         assigneId: response.data.userId,
         description: newIssue.description,
         columnId: newIssue.columnId,
-        assigneImg: response.data.assigneImg,
+        assigneImg: "",
+        priority: response.data.priority,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
