@@ -8,6 +8,7 @@ import type { Issue, User } from "@prisma/client";
 import axios from "axios";
 import Image from "next/image";
 import React from "react";
+import { AssigneeIcon } from "../../../../../../../../public/svgs/AssigneIcon";
 
 interface Props {
   onClose: () => void;
@@ -47,7 +48,6 @@ const AssigneDropdown = ({
       toastWarning("Something went wrong", "Please try again");
     }
   };
-  //
 
   return (
     <Dropdown
@@ -55,6 +55,15 @@ const AssigneDropdown = ({
       className="mt-1 origin-top-left p-1 backdrop-blur-3xl h-auto border-opacity-20"
     >
       <Input variant="ghost" placeholder="Assign to..." className="px-3" />
+      <button
+        className="h-[30px] relative hover:bg-stone-700 hover:bg-opacity-30 rounded-md flex items-center gap-1 px-2 w-full"
+        onClick={() => changeAssigne("", "")}
+      >
+        <AssigneeIcon />
+        <p className="text-white font-medium text-[13px] px-2 py-1 flex items-center">
+          No assigne
+        </p>
+      </button>
       {users &&
         users.map((user: User) => (
           <button
