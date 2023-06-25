@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const res = await request.json();
   const validatePayload: ApiCreateNewIssueRequest =
     apiCreateIssueValidator.parse(res);
-  const { name, description, columnId } = validatePayload;
+  const { name, description, columnId, assigneImg } = validatePayload;
 
   try {
     const issue = await prisma.issue.create({
@@ -15,6 +15,7 @@ export async function POST(request: Request) {
         name: name,
         description: description,
         columnId: columnId,
+        assigneImg: assigneImg,
       },
     });
 

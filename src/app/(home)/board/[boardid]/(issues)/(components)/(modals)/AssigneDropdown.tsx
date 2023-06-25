@@ -49,6 +49,8 @@ const AssigneDropdown = ({
     }
   };
 
+  console.log(issues);
+
   return (
     <Dropdown
       onClose={onClose}

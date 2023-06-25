@@ -57,7 +57,9 @@ const Issue = ({ columnId, workspaceId }: Props) => {
             <div className="flex justify-between">
               <p className="text-white font-semibold">{issue.name}</p>
               <button onClick={() => setIssueId(issue.id)}>
-                {issue?.assigneImg !== "" ? (
+                {issue?.assigneImg === "" ? (
+                  <AssigneeIcon />
+                ) : (
                   <>
                     <Image
                       src={issue?.assigneImg || ""}
@@ -67,8 +69,6 @@ const Issue = ({ columnId, workspaceId }: Props) => {
                       alt="assigneImg"
                     />
                   </>
-                ) : (
-                  <AssigneeIcon />
                 )}
 
                 {issueId === issue.id && (

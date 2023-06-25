@@ -20,6 +20,7 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [issues, setIssues] = useState<Issue[] | []>([]);
+  const [assigneImg, setAssigneImg] = useState("");
 
   const baseUrl = getBaseUrl();
 
@@ -29,6 +30,7 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
         name: name,
         columnId: columnId,
         description: description,
+        assigneImg: assigneImg,
       };
       await apiCreateIssueValidator.parseAsync(newIssue);
       const response = await axios.post(`${baseUrl}/api/createIssue`, newIssue);
@@ -38,7 +40,7 @@ const CreateIssueModal = ({ onClose, columnId }: Props) => {
         assigneId: response.data.userId,
         description: newIssue.description,
         columnId: newIssue.columnId,
-        assigneImg: "",
+        assigneImg: newIssue.assigneImg,
         priority: response.data.priority,
         createdAt: new Date(),
         updatedAt: new Date(),

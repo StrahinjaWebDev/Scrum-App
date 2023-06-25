@@ -9,4 +9,5 @@ export const apiCreateIssueValidator = z.object({
     .max(20, "Workspace can't be greater than 20 characters"),
   description: z.string().min(1, "Description can't be empty!"),
   columnId: z.string(),
+  assigneImg: z.string(),
 });
